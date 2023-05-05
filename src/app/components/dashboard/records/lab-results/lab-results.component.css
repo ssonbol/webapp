@@ -1,0 +1,11 @@
+.btn-info {
+  color: #fff;
+}
+
+.card-body p {
+  display: flex;
+}
+
+.card-body p strong {
+  width: 100px;
+}

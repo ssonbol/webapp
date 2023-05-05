@@ -1,0 +1,61 @@
+<section class="jumbotron text-center py-3">
+  <div class="d-flex justify-content-between align-items-center">
+    <div></div>
+    <h1 class="jumbotron-heading">Records</h1>
+    <div>
+      <button class="btn btn-outline-primary float-end" type="submit" data-bs-toggle="modal"
+        *ngIf="authorization || shareWithDoctorID" data-bs-target="#updateModal">
+        Share
+      </button>
+    </div>
+  </div>
+</section>
+<ul class="list-group mb-5">
+  <a (click)="navigate(item)" class="text-decoration-none" *ngFor="let item of records">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-10">
+          <fa-icon [icon]="item.icon" size="lg">
+          </fa-icon>
+          <strong class="text-gray-dark">{{item.name}}
+          </strong>
+        </div>
+        <div class="col-md-1" *ngIf="authorization || shareWithDoctorID">
+          <div class="vertical">
+            <div class="numberCircle ">{{item.count}}</div>
+          </div>
+        </div>
+        <div class="col-md-1" *ngIf="authorization || shareWithDoctorID">
+          <small class="btn">
+            <fa-icon class="fa-lg" [icon]="faAngleRight"></fa-icon>
+          </small>
+        </div>
+      </div>
+    </li>
+  </a>
+
+
+</ul>
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="update" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Access Duration</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <select class="form-select" #selected_value (change)="durationSelect(selected_value.value)">
+          <option disabled selected>Select Duration</option>
+          <option [value]="item?.item_id" *ngFor="let item of dropdownList">{{item?.item_text}}</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!selected_duration">
+          <span *ngIf="shareWithDoctorID">Share</span>
+          <span *ngIf="!shareWithDoctorID">Update</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

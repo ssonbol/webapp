@@ -1,0 +1,22 @@
+<section class="jumbotron text-center py-3">
+  <div class="container">
+    <h1 class="jumbotron-heading">Medicare Claims</h1>
+  </div>
+</section>
+
+<section *ngIf="medicareList.length; else elseBlock">
+  <div class="card mb-3" *ngFor="let pl of medicareList">
+    <a>
+      <h5 class="card-header header_bg_color">
+        <p class="m-0">{{pl.title}}</p>
+        <p class="m-0">{{pl.type}}</p>
+        <p class="m-0">{{pl.period_start | date:'dd MMM yyyy'}}</p>
+      </h5>
+      <div class="card-body">
+        <p class="card-text"><span>{{pl.price}}</span></p>
+      </div>
+    </a>
+  </div>
+</section>
+<ng-template #elseBlock><img class="mx-auto d-block" src="./assets/no-data-found.png" alt="No Data Found">
+</ng-template>

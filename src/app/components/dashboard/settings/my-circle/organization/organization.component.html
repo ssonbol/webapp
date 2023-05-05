@@ -1,0 +1,71 @@
+<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
+  <div class="d-flex align-items-center justify-content-between">
+    <form class="w-50">
+      <div class="input-group">
+        <input type="search" class="form-control" placeholder="Search..." [(ngModel)]="search" name="search">
+        <div class="input-group-append">
+          <button class="btn-search" type="button" (click)="searchProvider()">Search</button>
+        </div>
+      </div>
+    </form>
+    <button [disabled]="!selectedOrg" *ngIf="share" class="btn btn-outline-success float-end" type="submit"
+      data-bs-toggle="modal" data-bs-target="#share_org">Share</button>
+  </div>
+  <div *ngFor="let pl of orgainzationList" class="list-group list-group-flush border-bottom scrollarea">
+    <a class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+
+      <div class="d-flex justify-content-between">
+        <div class="form-check">
+          <input (change)="selectedOrg = orgElement.id" #orgElement name="radio" [id]="pl.organization_id"
+            class="form-check-input" type="radio" *ngIf="share">
+          <label [for]="pl.organization_id" class="mb-1 btn-provider form-check-label">
+            {{pl.organization_name}}
+          </label>
+        </div>
+
+        <div *ngIf="authorization">
+          <button type="button" class="btn btn-outline-danger me-2" data-bs-toggle="modal" data-bs-target="#delete"
+            (click)="selectedOrgID = pl.organization_id">Delete</button>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="delete" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Please Confirm</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this item
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+          (click)="deleteOrganization()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="share_org" tabindex="-1" aria-labelledby="share" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm Share</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are sure you want to share all your medical records and vitals?
+        Note: This action can be undone later through Settings>My Authorizations.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="proceed()">Proceed</button>
+      </div>
+    </div>
+  </div>
+</div>

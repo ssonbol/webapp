@@ -1,0 +1,78 @@
+<div class="signup-container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex flex-column align-items-center text-center">
+        <div class="d-flex align-items-center justify-content-between mt-5 mb-4 ps-4 pe-4 w-100">
+          <div></div>
+          <div>
+            <img class="avatar shadow" [src]="avatar">
+            <p class="fs-5 fw-bold label-name m-0">{{userData?.fname}} {{userData?.lname}}</p>
+          </div>
+          <div>
+            <button *ngIf="!isEdit && doctorID" class="btn btn-outline-primary text-end"
+              (click)="isEdit = true">Edit</button>
+          </div>
+        </div>
+        <div *ngIf="!isEdit && doctorID" class="user-info">
+          <div>
+            <label>E-mail:</label>
+            <p *ngFor="let email of createEmailAndPhoneArray(userData?.email)">{{email}}</p>
+          </div>
+          <div>
+            <label>Phone</label>
+            <p *ngFor="let phone of createEmailAndPhoneArray(userData?.phone)">{{phone}}</p>
+          </div>
+        </div>
+
+        <ng-container *ngIf="isEdit || !doctorID">
+          <form [formGroup]="profileForm" class="w-50 mb-5">
+
+            <div class="form-floating mb-2">
+              <input type="text" class="form-control" formControlName="fname" placeholder="First Name">
+              <label for="floatingPassword">First Name</label>
+            </div>
+
+            <div class="form-floating mb-2">
+              <input type="text" class="form-control" formControlName="lname" placeholder="Last Name">
+              <label for="floatingInput">Last Name</label>
+            </div>
+
+            <ng-container formArrayName="email">
+              <ng-container *ngFor="let e of email.controls; let i = index;">
+                <div class="form-floating mb-2 d-flex gap-3 align-items-center">
+                  <input type="email" class="form-control" [formControlName]="i" placeholder="Email">
+                  <label for="floatingPassword">Email</label>
+                  <button class="btn btn-outline-danger" (click)="addremoveEmail('remove', i)">-</button>
+                  <button *ngIf="i == 0" class="btn btn-outline-primary" (click)="addremoveEmail('add')">+</button>
+                </div>
+              </ng-container>
+            </ng-container>
+
+            <ng-container formArrayName="phone">
+              <ng-container *ngFor="let e of phone.controls; let i = index;">
+                <div class="form-floating mb-2 d-flex gap-3 align-items-center">
+                  <input type="text" class="form-control" [formControlName]="i" placeholder="Phone">
+                  <label for="floatingPassword">Phone</label>
+                  <button class="btn btn-outline-danger" (click)="addremovePhone('remove', i)">-</button>
+                  <button *ngIf="i == 0" class="btn btn-outline-primary" (click)="addremovePhone('add')">+</button>
+                </div>
+              </ng-container>
+            </ng-container>
+
+            <div class="d-flex gap-1">
+              <button *ngIf="doctorID" class="btn btn-lg btn-primary ms-auto" type="submit" (click)="editDoctor()">
+                Update
+              </button>
+              <button *ngIf="doctorID" class="btn btn-lg btn-danger" type="submit" (click)="delete()">
+                Delete
+              </button>
+              <button *ngIf="!doctorID" class="btn btn-lg btn-primary ms-auto" type="submit" (click)="onSubmit()">
+                Add
+              </button>
+            </div>
+          </form>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

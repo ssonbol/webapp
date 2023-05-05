@@ -1,0 +1,18 @@
+<ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="circle-tab" data-bs-toggle="tab" data-bs-target="#circle" type="button"
+      role="tab" aria-controls="circle" aria-selected="true">My Circle</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="organization-tab" data-bs-toggle="tab" data-bs-target="#organization" type="button"
+      role="tab" aria-controls="organization" aria-selected="false">organizations</button>
+  </li>
+</ul>
+<div class="tab-content mt-3" id="myTabContent">
+  <div class="tab-pane fade show active" id="circle" role="tabpanel" aria-labelledby="circle-tab">
+    <app-circle></app-circle>
+  </div>
+  <div class="tab-pane fade" id="organization" role="tabpanel" aria-labelledby="organization-tab">
+    <app-organization></app-organization>
+  </div>
+</div>

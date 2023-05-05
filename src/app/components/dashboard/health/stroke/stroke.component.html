@@ -1,0 +1,116 @@
+<form class="container mt-5" [formGroup]="strokeForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 card shadow p-4">
+      <div class=" text-center">
+        <h1 class="jumbotron-heading">Stroke Risk Predictor</h1>
+      </div>
+
+      <div class="bg-info p-3 rounded text-center mt-5">
+        <ngx-gauge [type]="'full'" [value]="gaugeValue" [min]="0" [max]="100" [append]="'%'" [prepend]="gaugePrepend"
+          [thresholds]="guageConfig">
+        </ngx-gauge>
+      </div>
+
+      <div class="mb-5 mt-5">
+        <div class="d-flex justify-content-between">
+          <h4 class="text-gray-dark">Risk Factors</h4>
+          <button type="button" class="btn btn-primary" (click)="strokeForm.reset(); bindForm();">Reset</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="form-group">
+          <label>Education</label>
+          <select formControlName="education" class="form-select">
+            <option value="" disabled>Please select an option</option>
+            <option *ngFor="let edu of Education" [value]="edu.value">{{edu.value}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Gender</label>
+          <select formControlName="gender" class="form-select">
+            <option value="" disabled>Please select an option</option>
+            <option *ngFor="let gender of Genders" [value]="gender.value">{{gender.value}}</option>
+          </select>
+        </div>
+
+        <div class="form-check">
+          <input id="renalDisease" type="checkbox" class="form-check-input" formControlName="renalDisease">
+          <label for="renalDisease" class="form-check-label">Renal Disease</label>
+        </div>
+
+        <div class="form-check">
+          <input id="diabetes" type="checkbox" class="form-check-input" formControlName="diabetes">
+          <label for="diabetes" class="form-check-label">Diabetes</label>
+        </div>
+
+        <div class="form-check">
+          <input id="congestiveHeartFailure" type="checkbox" class="form-check-input"
+            formControlName="congestiveHeartFailure">
+          <label for="congestiveHeartFailure" class="form-check-label">Congestive Heart Failure</label>
+        </div>
+
+        <div class="form-check">
+          <input id="peripheralArterialDisease" type="checkbox" class="form-check-input"
+            formControlName="peripheralArterialDisease">
+          <label for="peripheralArterialDisease" class="form-check-label">Peripheral Arterial Disease</label>
+        </div>
+
+        <div class="form-check">
+          <input id="highBloodPressure" type="checkbox" class="form-check-input" formControlName="highBloodPressure">
+          <label for="highBloodPressure" class="form-check-label">High Blood Pressure</label>
+        </div>
+
+        <div class="form-check">
+          <input id="ischemicHeartDisease" type="checkbox" class="form-check-input"
+            formControlName="ischemicHeartDisease">
+          <label for="ischemicHeartDisease" class="form-check-label">Ischemic Heart Disease</label>
+        </div>
+
+        <div class="form-check">
+          <input id="smoking" type="checkbox" class="form-check-input" formControlName="smoking">
+          <label for="smoking" class="form-check-label">Smoking</label>
+        </div>
+
+        <div class="form-check">
+          <input id="Formersmoking" type="checkbox" class="form-check-input" formControlName="formerSmoker">
+          <label for="Formersmoking" class="form-check-label">Former Smoker</label>
+        </div>
+
+        <div class="form-group">
+          <label>Alcoholic Drinks ({{getFormControlValue('alcoholicDrinks')}}) <br> (Per Week) </label>
+          <input type="range" class="form-range w-100" step="0.5" min="0" max="30" formControlName="alcoholicDrinks">
+        </div>
+
+        <div class="form-check">
+          <input id="formerDrinker" type="checkbox" class="form-check-input" formControlName="formerDrinker">
+          <label for="formerDrinker" class="form-check-label">Former Drinker</label>
+        </div>
+
+        <div class="form-group">
+          <label>Physical Activity ({{getFormControlValue('physicalActivity')}}) <br> (Per Week) </label>
+          <input type="range" class="form-range w-100" step="1" min="0" max="30" formControlName="physicalActivity">
+        </div>
+
+        <div class="form-check">
+          <input id="indicatorsOfAnger" type="checkbox" class="form-check-input" formControlName="indicatorsOfAnger">
+          <label for="indicatorsOfAnger" class="form-check-label">Indicators of Anger</label>
+        </div>
+
+        <div class="form-check">
+          <input id="depression" type="checkbox" class="form-check-input" formControlName="depression">
+          <label for="depression" class="form-check-label">Depression</label>
+        </div>
+
+        <div class="form-check">
+          <input id="anxiety" type="checkbox" class="form-check-input" formControlName="anxiety">
+          <label for="anxiety" class="form-check-label">Anxiety</label>
+        </div>
+
+        <div class="mt-4">
+          <button class="btn btn-primary" type="submit">Calculate Risk</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,47 @@
+<div class="row m-3">
+  <div class="col-md-1 p-0 align">
+    <label>From</label>
+  </div>
+
+  <div class="col-md-3">
+    <input type="date" class="form-control">
+  </div>
+
+  <div class="col-md-1 p-0 align">
+    <label>To</label>
+  </div>
+  <div class="col-md-3">
+    <input type="date" class="form-control">
+  </div>
+  <div class="col-md-1">
+    <button class="btn-search" type="submit">Filter</button>
+  </div>
+</div>
+<div class="text-align-center mt-3" *ngIf="record.length">
+  <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+    [title]="chartOptions.title" [markers]="chartOptions.markers"></apx-chart>
+</div>
+<h4>Records</h4>
+<div class="list-group">
+  <a href="javascript:void(0)" class="list-group-item list-group-item-action" aria-current="true">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Latest Record:</h5>
+    </div>
+    <p class="mb-1">{{latestDate | date:'dd MMM yyyy'}}</p>
+    <small class="text-blue">{{latestRecord}}</small>
+  </a>
+  <a href="javascript:void(0)" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Highest Record:</h5>
+    </div>
+    <p class="mb-1">{{highestDate | date:'dd MMM yyyy'}}</p>
+    <small class="text-blue">{{highestRecord}}</small>
+  </a>
+  <a href="javascript:void(0)" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Lowest Record:</h5>
+    </div>
+    <p class="mb-1">{{lowestDate | date:'dd MMM yyyy'}}</p>
+    <small class="text-blue">{{lowestRecord}}</small>
+  </a>
+</div>

@@ -1,0 +1,94 @@
+<div class="signup-container">
+  <div class="row">
+    <div class="col-md-2 offset-md-2">
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+        <img class="avatar mt-5" [src]="image">
+      </div>
+    </div>
+    <div class="col-md-6 ps-5">
+      <h1 class="h3 mb-3 fw-normal">
+        <span *ngIf="!reminderID">Add </span>
+        <span *ngIf="reminderID">Update </span>
+        Reminder
+      </h1>
+      <form [formGroup]="medicineForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Type</label>
+        </div>
+        <div class="from-to justify-content-center">
+          <span>Medication</span>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" formControlName="type" (change)="toggle()">
+          </div>
+          <span>Custom</span>
+        </div>
+
+        <div class="form-group">
+          <label>Title</label>
+
+          <div class="d-flex gap-2" *ngIf="selectedType || reminderTitle">
+            <input type="text" class="form-control" formControlName="reminder_title">
+            <button *ngIf="!selectedType" type="button" class="btn btn-sm btn-primary w-25" (click)="restTitle()">Rest Title</button>
+          </div>
+          <ng-container *ngIf="!selectedType && !reminderTitle">
+            <select class="form-select" (change)="onReminderTitleChange(medication_title.value, reminderTitleModal)" #medication_title>
+              <option value="" disabled selected>Select title</option>
+              <option *ngFor="let medication of medicationsList" [value]="medication.name">
+                {{medication.name ? medication.name : 'N/A'}}</option>
+            </select>
+          </ng-container>
+
+        </div>
+
+        <div class="form-group">
+          <label>From</label>
+          <div class="from-to">
+            <input type="datetime-local" class="form-control d-inline-block" formControlName="from_date">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>To</label>
+          <div class="from-to">
+            <input class="mt-2" type="datetime-local" class="form-control d-inline-block" formControlName="to_date">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Repeat</label>
+          <select class="form-select" formControlName="frequency_per_day">
+            <option value="1">Once</option>
+            <option value="2">Twice</option>
+            <option value="3">3 Times</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary mt-2 float-end" type="submit">
+          <span *ngIf="!reminderID">Add</span>
+          <span *ngIf="reminderID">Update</span>
+        </button>
+        <button class="btn btn-outline-primary mt-2 float-end me-2" routerLink="/reminders">Back</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<ng-template #reminderTitleModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Reminder Title</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss(false)"></button>
+  </div>
+  <div class="modal-body">
+
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" class="form-control" [value]="reminderTitle" #reminder_title>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-sm btn-primary" (click)="modal.close(reminder_title.value)">Done</button>
+  </div>
+</ng-template>

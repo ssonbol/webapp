@@ -1,0 +1,31 @@
+a {
+  cursor: pointer;
+}
+
+.align {
+  text-align: end;
+  line-height: 35px;
+  height: 35px;
+}
+
+.text-blue {
+  color: #4285f3;
+  font-weight: bold;
+}
+
+.btn-search {
+  color: white;
+  background: #4285f3;
+  border: 1px solid #4285f3;
+  height: 38px;
+  padding: 0px 1rem;
+}
+
+.btn-provider {
+  color: #4285f3;
+}
+
+.header_bg_color {
+  color: white;
+  background-color: #4285f3 !important;
+}

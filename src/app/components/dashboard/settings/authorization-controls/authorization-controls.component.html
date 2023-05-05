@@ -1,0 +1,36 @@
+ <section class="jumbotron text-center py-3">
+   <div class="container">
+     <h1 class="jumbotron-heading">{{name}}</h1>
+   </div>
+ </section>
+ <div class="text-end">
+   <button class="btn btn-primary" (click)="onSubmit()">Save</button>
+ </div>
+ <div class="form-check">
+   <input class="form-check-input" type="checkbox" [(ngModel)]="all" (change)="checkValue(all)">
+   <label class="form-check-label" for="flexCheckDefault">
+     All
+   </label>
+ </div>
+ <form [formGroup]="skillsForm">
+   <div formArrayName="skills">
+     <div *ngFor="let skill of skills.controls; let i=index">
+       <div [formGroupName]="i" class="row">
+         <div class="col-md-1">
+           <div class="form-check">
+             <input class="form-check-input" type="checkbox" formControlName="state">
+           </div>
+         </div>
+         <div class="col-md-11">
+           <div class="card mb-3 col-mb-11">
+             <h5 class="card-header header_bg_color">{{skill.value.skill}}</h5>
+             <div class="card-body">
+               <p class="card-text"><strong>{{skill.value.exp}}</strong></p>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+
+ </form>

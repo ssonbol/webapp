@@ -1,0 +1,15 @@
+<section class="jumbotron text-center py-3">
+  <div class="container">
+    <h1 class="jumbotron-heading">Medications</h1>
+  </div>
+</section>
+<section *ngIf="medicationsList.length > 0; else elseBlock">
+  <div class="card mb-3" *ngFor="let pl of medicationsList">
+    <h5 class="card-header header_bg_color">{{pl.title}}</h5>
+    <div class="card-body">
+      <p class="card-text"><strong>{{pl.text}}</strong></p>
+    </div>
+  </div>
+</section>
+<ng-template #elseBlock><img class="mx-auto d-block" src="./assets/no-data-found.png" alt="No Data Found">
+</ng-template>

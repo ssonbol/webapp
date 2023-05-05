@@ -1,0 +1,119 @@
+<main role="main">
+
+  <section class="jumbotron text-center p-3">
+    <div class="container">
+      <h1 class="jumbotron-heading">Health Check</h1>
+      <p class="lead text-muted">Keep track of all your conditions.</p>
+    </div>
+  </section>
+
+  <div class="container mb-4" >
+    <div class="row">
+      <div class="col-md-4">
+        <a routerLink="asthma" title="Asthma Attack" class="text-decoration-none">
+          <div class="card shadow-sm">
+            <img class="card-img-top img-thumbnail" src="./assets/health/asthma.jpg" alt="Asthma Attack">
+            <div class="card-body">
+              <p class="card-text">Asthma Attack</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a routerLink="stroke" title="Stroke" class="text-decoration-none">
+          <div class="card shadow-sm">
+            <img class="card-img-top img-thumbnail" src="./assets/health/stroke.png" alt="Stroke">
+            <div class="card-body">
+              <p class="card-text">Stroke</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a routerLink="cardiovascular" title="Cardiovascular" class="text-decoration-none">
+          <div class="card shadow-sm">
+            <img class="card-img-top img-thumbnail" src="./assets/health/cardio.jpg" alt="Cardiovascular">
+            <div class="card-body">
+              <p class="card-text">Cardiovascular</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Track Vitals</h1>
+      <p class="lead text-muted">Keep track of all your vitals.</p>
+    </div>
+  </section>
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <a routerLink="/temperature" title="Temperature" class="text-decoration-none">
+      <div class="d-flex text-muted">
+        <fa-icon [icon]="faTemp" size="2x"></fa-icon>
+        <div class="media-body pb-2 border-bottom border-gray">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <h5><strong class="text-gray-dark">Temperature</strong></h5>
+          </div>
+          <sub class="d-block">Track your body Temperature</sub>
+        </div>
+      </div>
+    </a>
+    <a routerLink="/weight" title="Weight" class="text-decoration-none">
+      <div class="d-flex text-muted pt-2">
+        <fa-icon [icon]="faWeight" size="2x"></fa-icon>
+        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <strong class="text-gray-dark">Weight</strong>
+          </div>
+          <span class="d-block">Track your body Weight</span>
+        </div>
+      </div>
+    </a>
+    <a routerLink="/height" title="Height" class="text-decoration-none">
+      <div class="d-flex text-muted pt-2">
+        <fa-icon [icon]="faRuler" size="2x"></fa-icon>
+        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <strong class="text-gray-dark">Height</strong>
+          </div>
+          <span class="d-block">Track your body Height</span>
+        </div>
+      </div>
+    </a>
+    <a routerLink="/bodyMassIndex" title="Body Mass Index" class="text-decoration-none">
+      <div class="d-flex text-muted pt-2">
+        <fa-icon [icon]="faChild" size="2x"></fa-icon>
+        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <strong class="text-gray-dark">BMI</strong>
+          </div>
+          <span class="d-block">Track your body Body Mass Index</span>
+        </div>
+      </div>
+    </a>
+    <a routerLink="/pulse" title="Pulse" class="text-decoration-none">
+      <div class="d-flex text-muted pt-2">
+        <fa-icon [icon]="faHeartbeat" size="2x"></fa-icon>
+        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <strong class="text-gray-dark">Pulse</strong>
+          </div>
+          <span class="d-block">Track your Heart Pulse</span>
+        </div>
+      </div>
+    </a>
+    <a routerLink="/bloodPressure" title="Blood Pressure" class="text-decoration-none">
+      <div class="d-flex text-muted pt-2">
+        <fa-icon [icon]="faStethoscope" size="2x"></fa-icon>
+        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <strong class="text-gray-dark">Blood Pressure</strong>
+          </div>
+          <span class="d-block">Track your Blood Pressure</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</main>

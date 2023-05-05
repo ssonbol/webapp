@@ -1,0 +1,78 @@
+<div class="signup-container">
+  <main class="form-signin text-center">
+    <img class="mb-4" src="./assets/login/logo.png" alt="" width="150" height="150" />
+    <h1 class="h3 mb-3 fw-normal">Create New Account</h1>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="form-floating mb-2">
+        <input type="email" class="form-control" formControlName="username" placeholder="Username">
+        <label for="floatingInput">Username</label>
+
+      </div>
+      <div class="form-floating mb-2">
+        <input type="password" class="form-control" formControlName="password" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="password" class="form-control" formControlName="confirm_password" placeholder="Confirm Password">
+        <label for="floatingPassword">Confirm Password</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="tel" class="form-control" formControlName="mobile" placeholder="Phone" >
+        <label for="floatingPassword">Phone</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" formControlName="fname" placeholder="First Name">
+        <label for="floatingPassword">First Name</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" formControlName="lname" placeholder="Last Name">
+        <label for="floatingPassword">Last Name</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" formControlName="maiden_name" placeholder="Maiden Name">
+        <label for="floatingPassword">Maiden Name</label>
+      </div>
+
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" formControlName="email" placeholder="Email">
+        <label for="floatingPassword">Email</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" formControlName="address" placeholder="Address">
+        <label for="floatingPassword">Address</label>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+
+          <div class="form-floating mb-2">
+            <input type="text" class="form-control" formControlName="state" placeholder="State">
+            <label for="floatingPassword">State</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-2">
+            <input type="text" class="form-control" formControlName="city" placeholder="City">
+            <label for="floatingPassword">City</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" formControlName="postal_code" placeholder="Zip code">
+        <label for="floatingPassword">Zip code</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="date" class="form-control" formControlName="dob" placeholder="Date of Birth">
+        <label for="floatingPassword">Date of Birth</label>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="signupForm.invalid">
+        Sign up
+      </button>
+
+      <div class="text-muted mt-3">
+        Already have an account? <a routerLink="/login">Login</a>
+      </div>
+    </form>
+    <p class="mt-3 text-muted">&copy; 2020 - {{ copyRight }}</p>
+  </main>
+</div>

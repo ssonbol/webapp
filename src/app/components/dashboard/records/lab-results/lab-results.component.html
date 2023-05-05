@@ -1,0 +1,52 @@
+<section class="jumbotron text-center py-3">
+  <div class="container">
+    <h1 class="jumbotron-heading">Lab Results</h1>
+  </div>
+</section>
+
+<div class="d-flex justify-content-end mb-4">
+  <form>
+    <div class="input-group">
+      <input type="search" class="form-control" placeholder="Search..." [(ngModel)]="search" name="search">
+      <div class="input-group-append">
+        <button class="btn-search" type="button" (click)="updateFilters()">Search</button>
+      </div>
+    </div>
+  </form>
+  <button class="btn btn-outline-primary ms-2" data-bs-toggle="modal" data-bs-target="#filterModal">Filter</button>
+</div>
+<section *ngIf="(cus.record | json) !='{}'; else elseBlock">
+  <ng-container *ngFor="let key of Object.keys(cus.record)">
+    <div class="card mb-3" *ngIf="cus.record[key].length">
+      <h4 class="card-header header_bg_color">{{key}}</h4>
+      <div class="card" *ngFor="let k of Object.keys(cus.record[key])">
+        <div class="card-body">
+          <h5 class="text-info"><strong>{{cus.record[key][k].title}}</strong></h5>
+          <p class="card-text mb-0"><strong>Record: </strong>{{cus.record[key][k].record | date:'dd MMM yyyy'}}</p>
+          <p class="card-text"> <strong>Value: </strong>{{cus.record[key][k].value}}</p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</section>
+<ng-template #elseBlock><img class="mx-auto d-block" src="./assets/no-data-found.png" alt="No Data Found">
+</ng-template>
+
+
+<div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Filter Document Types</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <ng-multiselect-dropdown [placeholder]="'Filter lab result types'" [settings]="dropdownSettings"
+            [data]="(dropdownList | async)" [(ngModel)]="selectedItems" (ngModelChange)="onItemSelect($event)">
+          </ng-multiselect-dropdown>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

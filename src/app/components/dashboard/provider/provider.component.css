@@ -1,0 +1,15 @@
+.btn-info {
+  color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+  .list-group-item p {
+    width: 70%;
+  }
+
+  .list-group-item a {
+    width: 30%;
+    text-align: right;
+  }
+
+}
