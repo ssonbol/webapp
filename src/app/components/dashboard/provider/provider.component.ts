@@ -99,24 +99,39 @@ export class ProviderComponent implements OnInit, OnDestroy {
     this.getList();
   }
 
+  // Called from provider.component.html when user clicks on the link/resync button
   LinkProvider(providerID, integrationTypeId, confirmShare, cancelShare) {
+    console.log(`
+    <LinkProvider>
+    providerID: ${providerID}
+    integrationTypeId: ${integrationTypeId}
+    confirmShare: ${confirmShare}
+    cancelShare: ${cancelShare}`)
     this.shareDataService.setLoaderHack(true);
+    // body of the request for Auth server link
     let data = {
       userId: this.userData.user_id,
       providerId: providerID,
       sessionKey: this.authData.sessionKey,
     };
     let integrationId = integrationTypeId;
+    // make request
     this.basicService.post(`provider/link`, data)
       .subscribe((response: any) => {
+        console.log(this);
+        // response acquired
         if (response.statusCode == 0) {
+          // response is good
           if (
             response.payload != null &&
             typeof response.payload === "string"
           ) {
+            // payload is the link asked
             let link = response.payload;
+            console.log("returned link: ", link)
 
             if (integrationId === 7) {
+              // special share confirm modal if integration is 7
               this.modalService.open(confirmShare)
                 .result.then((resp: any) => {
                   if (resp) {
@@ -142,10 +157,27 @@ export class ProviderComponent implements OnInit, OnDestroy {
               //     ),
               //   })
               // );
-            }
-            else {
+            } else {
+              // link valid, but not integration 7
+              // overriding link for testing
+              link = "https://plasmas.github.io?code=ABCD-EFGH";
               this.recheckList();
-              window.open(link, "_blank");
+              // use pop-up to open link
+              const strWindowFeatures = 'toolbar=no, menubar=no, width=600, height=700, top=100, left=100';
+              const auth_window = window.open(link, "_blank", strWindowFeatures);
+              // listens for the callback site to send back its url
+              window.addEventListener('message', e => {
+                if (e.source === auth_window) {
+                    const currentUrl = e.data;
+                    console.log("callback url", currentUrl);
+                    this.toastrService.success("Get link: " + currentUrl);
+                    if (auth_window && !auth_window.closed) {
+                        auth_window.close();
+                    }
+                    // code acquired, now try link / resync records
+                    // not tested yet   
+                }
+              })
             }
 
             // props.navigation.navigate("LinkProvider", {
@@ -155,6 +187,7 @@ export class ProviderComponent implements OnInit, OnDestroy {
             //   providers,
             // });
           } else {
+            console.log("no link returned")
             if (integrationId === 6) this.syncEpic(providerID);
             else if (integrationId === 8) this.syncGeneric(providerID);
             else if (integrationId === 7) {
