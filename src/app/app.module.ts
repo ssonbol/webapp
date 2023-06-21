@@ -56,6 +56,7 @@ import { ForgetChangePasswordComponent } from './auth/forget-change-password/for
 import { AuthorizationControlsComponent } from './components/dashboard/settings/authorization-controls/authorization-controls.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShareComponent } from './components/dashboard/settings/share/share.component';
+import { CallbackComponent } from './components/callback/callback.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { ShareComponent } from './components/dashboard/settings/share/share.comp
     RecoveryCodeComponent,
     ForgetChangePasswordComponent,
     AuthorizationControlsComponent,
-    ShareComponent
+    ShareComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,

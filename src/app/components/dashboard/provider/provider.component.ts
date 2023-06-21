@@ -160,7 +160,6 @@ export class ProviderComponent implements OnInit, OnDestroy {
             } else {
               // link valid, but not integration 7
               // overriding link for testing
-              link = "https://plasmas.github.io?code=ABCD-EFGH";
               this.recheckList();
               // use pop-up to open link
               const strWindowFeatures = 'toolbar=no, menubar=no, width=600, height=700, top=100, left=100';
@@ -168,55 +167,42 @@ export class ProviderComponent implements OnInit, OnDestroy {
               // listens for the callback site to send back its url
               window.addEventListener('message', e => {
                 if (e.source === auth_window) {
-                    const currentUrl = e.data;
-                    console.log("callback url", currentUrl);
-                    this.toastrService.success("Get link: " + currentUrl);
+                    const auth_code = e.data;
+                    // console.log("auth_code: ", auth_code)
+                    // this.toastrService.success("Get code: " + auth_code);
                     if (auth_window && !auth_window.closed) {
                         auth_window.close();
                     }
                     // code acquired, now try link / resync records
-                    // not tested yet   
+                    switch (integrationId) {
+                      case 6:
+                        this.syncEpic(providerID, auth_code);
+                        break;
+                      case 7:
+                        this.modalService.open(cancelShare)
+                          .result.then(() => {
+                            this.syncBlueButton(providerID, auth_code)
+                          });
+                        break;
+                      case 8:
+                        this.syncGeneric(providerID, auth_code);
+                        break;
+                      default:
+                        // not a valid provider type, just find if it's in the list
+                        // success linking message does not guarantee successful linking
+                        const linked = this.providerList.find((p) => p.providerId === providerID);
+                        // dispatch(providerLinked(providerID));
+                        let msg = linked
+                          ? 'Synchronization is performed successfully'
+                          : 'Linking is performed successfully'
+                        this.toastrService.success(msg);
+                        break;
+                    }
                 }
               })
             }
-
-            // props.navigation.navigate("LinkProvider", {
-            //   link,
-            //   providerID,
-            //   integrationId,
-            //   providers,
-            // });
           } else {
-            console.log("no link returned")
-            if (integrationId === 6) this.syncEpic(providerID);
-            else if (integrationId === 8) this.syncGeneric(providerID);
-            else if (integrationId === 7) {
-              this.modalService.open(cancelShare)
-                .result.then(() => {
-                  this.syncBlueButton(providerID)
-                });
-              // dispatch(
-              //   showConfirmDialogue({
-              //     msg: i18n.t("records.shareRecords.confirmCancelShare"),
-              //     title: i18n.t("records.shareRecords.cancelShareTitle"),
-              //     leftButton: new ButtonAttributes(
-              //       i18n.t("records.shareRecords.confirm"),
-              //       () => this.syncBlueButton(providerID),
-              //       theme.colors.danger
-              //     ),
-              //   })
-              // );
-
-            } else {
-              const linked = this.providerList.find((p) => p.providerId === providerID);
-              // dispatch(providerLinked(providerID));
-
-              let msg = linked
-                ? 'Synchronization is performed successfully'
-                : 'Linking is performed successfully'
-
-              this.toastrService.success(msg);
-            }
+            this.toastrService.error("Cannot get authentication link to the provider");
           }
         } else if (response.statusCode == -500) {
           this.toastrService.error('Patient not found');
@@ -228,9 +214,9 @@ export class ProviderComponent implements OnInit, OnDestroy {
       })
   }
 
-  syncEpic(providerId) {
+  syncEpic(providerId, code) {
     if (providerId) {
-      this.basicService.post(`provider/syncEpic`, { providerId })
+      this.basicService.post(`provider/syncEpic`, { providerId, sessionKey: this.parameters.sessionKey, code, user_id: this.userData.user_id })
         .subscribe((resp: any) => {
           if (resp.statusCode === 0) {
             let linked = this.providerList.find((p) => p.providerId === providerId);
@@ -248,9 +234,9 @@ export class ProviderComponent implements OnInit, OnDestroy {
     }
   };
 
-  syncGeneric(providerId) {
+  syncGeneric(providerId, code) {
     if (providerId) {
-      this.basicService.post(`provider/syncGeneric`, { providerId })
+      this.basicService.post(`provider/syncGeneric`, { providerId, sessionKey: this.parameters.sessionKey, code, user_id: this.userData.user_id })
         .subscribe((resp: any) => {
           if (resp.statusCode === 0) {
             let linked = this.providerList.find((p) => p.providerId === providerId);
@@ -268,9 +254,9 @@ export class ProviderComponent implements OnInit, OnDestroy {
     }
   };
 
-  syncBlueButton(providerId) {
+  syncBlueButton(providerId, code) {
     if (providerId) {
-      this.basicService.post(`provider/syncBlueButton`, { providerId })
+      this.basicService.post(`provider/syncBlueButton`, { providerId, sessionKey: this.parameters.sessionKey, code, user_id: this.userData.user_id })
         .subscribe((resp: any) => {
           if (resp.statusCode === 0) {
             let linked = this.providerList.find((p) => p.providerId === providerId);

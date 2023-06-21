@@ -37,10 +37,12 @@ import { RecoveryCodeComponent } from './auth/recovery-code/recovery-code.compon
 import { ForgetChangePasswordComponent } from './auth/forget-change-password/forget-change-password.component';
 import { AuthorizationControlsComponent } from './components/dashboard/settings/authorization-controls/authorization-controls.component';
 import { ShareComponent } from './components/dashboard/settings/share/share.component';
+import { CallbackComponent } from './components/callback/callback.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/health', pathMatch: 'full' },
   { path: '', component: HealthComponent },
+  { path: 'callback', component: CallbackComponent},
 
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
