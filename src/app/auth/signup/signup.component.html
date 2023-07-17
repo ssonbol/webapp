@@ -65,6 +65,17 @@
         <input type="date" class="form-control" formControlName="dob" placeholder="Date of Birth">
         <label for="floatingPassword">Date of Birth</label>
       </div>
+      <label>
+        <input type="checkbox" formControlName="agreement">
+        I agree to the <a routerLink="/policy">policy</a> and <a routerLink="/license">license</a>.
+      </label>
+      <div *ngIf="signupForm.get('agreement').invalid && signupForm.get('agreement').touched" class="text-danger">
+        You must agree to the policy and license.
+      </div>
+      <div class="form-floating mb-2" *ngIf="signupForm.get('agreement').valid">
+        <input type="text" class="form-control" formControlName="signature" placeholder="Signature">
+        <label for="floatingPassword">Signature (Full Name)</label>
+      </div>
       <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="signupForm.invalid">
         Sign up
       </button>

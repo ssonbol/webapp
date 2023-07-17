@@ -38,11 +38,15 @@ import { ForgetChangePasswordComponent } from './auth/forget-change-password/for
 import { AuthorizationControlsComponent } from './components/dashboard/settings/authorization-controls/authorization-controls.component';
 import { ShareComponent } from './components/dashboard/settings/share/share.component';
 import { CallbackComponent } from './components/callback/callback.component';
+import { PolicyComponent } from './policy/policy.component';
+import { LicenseComponent } from './license/license.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/health', pathMatch: 'full' },
   { path: '', component: HealthComponent },
   { path: 'callback', component: CallbackComponent},
+  { path: 'policy', component: PolicyComponent},
+  { path: 'license', component: LicenseComponent},
 
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

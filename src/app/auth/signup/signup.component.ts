@@ -40,6 +40,8 @@ export class SignupComponent implements OnInit {
     marital_status: null,
     user_type: "patient",
     device_type: "Web",
+    agreement: [false, Validators.requiredTrue], // policy and license agreement
+    signature: ['', Validators.required],
   })
   message = '';
   showAlert = 'd-none';
@@ -49,11 +51,13 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit() {
-    // let signup_json=this.signupForm.value;
+    let signupData = this.signupForm.value;
+    delete signupData.agreement;
+    delete signupData.signature;
     this.basicService.post('user/signup', this.signupForm.value)
       .subscribe((res: any) => {
         this.router.navigate(['/login']);
-        this.toastrService.success('Succcessfully account created');
+        this.toastrService.success('Succcessfully created account');
       });
 
     console.log(this.signupForm.value)

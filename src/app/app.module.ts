@@ -57,6 +57,8 @@ import { AuthorizationControlsComponent } from './components/dashboard/settings/
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShareComponent } from './components/dashboard/settings/share/share.component';
 import { CallbackComponent } from './components/callback/callback.component';
+import { PolicyComponent } from './policy/policy.component';
+import { LicenseComponent } from './license/license.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +104,9 @@ import { CallbackComponent } from './components/callback/callback.component';
     ForgetChangePasswordComponent,
     AuthorizationControlsComponent,
     ShareComponent,
-    CallbackComponent
+    CallbackComponent,
+    PolicyComponent,
+    LicenseComponent
   ],
   imports: [
     BrowserModule,
