@@ -14,7 +14,7 @@
   </form>
   <button class="btn btn-outline-primary ms-2" data-bs-toggle="modal" data-bs-target="#filterModal">Filter</button>
 </div>
-<section *ngIf="documentsList.length > 0; else elseBlock">
+<section *ngIf="documentsList && documentsList.length > 0; else elseBlock">
   <div class="card mb-3" *ngFor="let pl of documentsList">
     <a routerLink="/pdf-view/{{pl.id}}">
       <h5 class="card-header header_bg_color">{{pl.name}}</h5>
