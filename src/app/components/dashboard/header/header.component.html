@@ -30,21 +30,21 @@
           </a>
         </li>
         <li class="nav-item btn-group text-center">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+          <a class="nav-link dropdown-toggle" tabindex="0" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             <fa-icon [icon]="faUserCog" size="2x" class="d-block"></fa-icon>
             <span>Hi {{userData.fname}}</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
-            <li><a class="dropdown-item" routerLink="/my-circle">My Circle</a></li>
-            <li><a class="dropdown-item" routerLink="/my-authorizations">My authorizations</a></li>
-            <li><a class="dropdown-item" routerLink="/reminders">Reminders</a></li>
-            <li><a class="dropdown-item" routerLink="/share">Share</a></li>
+            <li><a class="dropdown-item" routerLink="/profile" tabindex="1">Profile</a></li>
+            <li><a class="dropdown-item" routerLink="/my-circle" tabindex="2">My Circle</a></li>
+            <li><a class="dropdown-item" routerLink="/my-authorizations" tabindex="3">My authorizations</a></li>
+            <li><a class="dropdown-item" routerLink="/reminders" tabindex="4">Reminders</a></li>
+            <li><a class="dropdown-item" routerLink="/share" tabindex="5">Share</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" (click)="shareDataService.logout()">Logout</a></li>
+            <li><a class="dropdown-item" (click)="shareDataService.logout()" tabindex="6">Logout</a></li>
           </ul>
         </li>
       </ul>
