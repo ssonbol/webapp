@@ -98,7 +98,8 @@ export class ContactComponent implements OnInit {
           this.filterDoctor();
         }
       }, (err) => {
-        this.toastrService.error(err.error.errorMsg);
+        // this.toastrService.error(err.error.errorMsg);
+        console.log("get-user-doctors", err.error.errorMsg)
       });
   }
 
@@ -108,7 +109,8 @@ export class ContactComponent implements OnInit {
         this.toastrService.success('Doctor added to your contact circle!');
         this.router.navigate(['/my-circle']);
       }, err => {
-        this.toastrService.error(err.statusMessage);
+        // this.toastrService.error(err.statusMessage);
+        console.log("add-doctor", err.statusMessage)
       });
   }
 
@@ -147,7 +149,8 @@ export class ContactComponent implements OnInit {
             this.toastrService.success('Contact updated!');
           this.router.navigate(['/my-circle']);
         }, err => {
-          this.toastrService.error(err.error.errorMsg);
+          // this.toastrService.error(err.error.errorMsg);
+          console.log("update-user-doctor", err.error.errorMsg)
         });
     }
   }

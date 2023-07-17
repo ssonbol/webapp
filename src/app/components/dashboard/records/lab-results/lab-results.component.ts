@@ -64,7 +64,8 @@ export class LabResultsComponent implements OnInit {
         this.selectedItems = dropdownList;
         this.dropdownList.next(dropdownList);
       }, err => {
-        this.toastrService.error(err.error.errorMsg);
+        // this.toastrService.error(err.error.errorMsg);
+        console.log("get-result-categories", err.error.errorMsg)
       });
   }
 
@@ -82,7 +83,8 @@ export class LabResultsComponent implements OnInit {
           this.setCUS(data)
         }
       }, err => {
-        this.toastrService.error(err.error.errorMsg);
+        // this.toastrService.error(err.error.errorMsg);
+        console.log("get-results", err.error.errorMsg)
       });
   }
 

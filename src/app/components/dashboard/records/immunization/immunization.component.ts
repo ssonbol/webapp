@@ -34,7 +34,8 @@ export class ImmunizationComponent implements OnInit {
         }));
 
       }, err => {
-        this.toastrService.error(err.error.errorMsg);
+        // this.toastrService.error(err.error.errorMsg);
+        console.error("get-immunizations", err.error.errorMsg)
       });
   }
 

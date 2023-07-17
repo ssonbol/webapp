@@ -116,7 +116,8 @@ export class CircleComponent implements OnInit {
         this.getLinks();
       }, err => {
         document.getElementById("updateModal").click();
-        this.toastrService.error(err.error.errorMsg);
+        // this.toastrService.error(err.error.errorMsg);
+        console.error("update-expiry", err.error.errorMsg);
       });
   }
 
@@ -199,7 +200,8 @@ export class CircleComponent implements OnInit {
         this.toastrService.success('Shared Successfully');
         this.router.navigate(['/my-authorizations']);
       }, err => {
-        this.toastrService.error(err.error.errorMsg);
+        // this.toastrService.error(err.error.errorMsg);
+        console.error("add-link", err.error.errorMsg);
       });
   }
 

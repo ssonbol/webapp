@@ -34,7 +34,8 @@ export class MedicationsComponent implements OnInit {
         }));
 
       }, err => {
-        this.toastrService.error(err.error.errorMsg);
+        // this.toastrService.error(err.error.errorMsg);
+        console.error("get-medications", err.error.errorMsg)
       });
   }
 

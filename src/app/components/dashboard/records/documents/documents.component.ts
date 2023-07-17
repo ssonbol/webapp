@@ -58,7 +58,7 @@ export class DocumentsComponent implements OnInit {
   getDocumentNames() {
     this.basicService.post('patient/get-document-names', this.parameters)
       .subscribe((res: any) => {
-        this.documentNamesList = res.payload.payload;
+        this.documentNamesList = res.payload.success ? res.payload.payload : [];
         this.selectedItems = this.documentNamesList;
         if (this.providerId && this.visitReferenceId)
           this.getVisitDocuments();
@@ -106,7 +106,8 @@ export class DocumentsComponent implements OnInit {
           this.masterDocuments = data;
           this.documentsList = data;
         } else {
-          this.toastrService.error(res.payload.message)
+          // this.toastrService.error(res.payload.message)
+          console.error("getVisitDocuments", res.payload.message)
         }
 
       });
@@ -125,7 +126,7 @@ export class DocumentsComponent implements OnInit {
   }
 
   onItemSelect(items: Array<any>) {
-    if (items.length) {
+    if (items && items.length) {
       let allData = [];
       for (let index = 0; index < items.length; index++) {
         var results = this.masterDocuments.filter((map) => {

@@ -162,7 +162,8 @@ export class RecordComponent implements OnInit {
           this.toastrService.success('Data shared with doctor!');
           this.router.navigate(['/my-authorizations']);
         }, err => {
-          this.toastrService.error(err.error.errorMessage);
+          // this.toastrService.error(err.error.errorMessage);
+          console.error("add-link", err.error.errorMessage);
         });
     }
     // Update existing
@@ -175,7 +176,8 @@ export class RecordComponent implements OnInit {
           this.toastrService.success('Expiry Updated');
           this.router.navigate(['/my-authorizations']);
         }, err => {
-          this.toastrService.error(err.error.errorMessage);
+          // this.toastrService.error(err.error.errorMessage);
+          console.error("update-link", err.error.errorMessage);
         });
     }
   }

@@ -36,7 +36,8 @@ export class MedicareClaimsComponent implements OnInit {
         }));
 
       }, err => {
-        this.toastrService.error(err.error.errorMsg);
+        // this.toastrService.error(err.error.errorMsg);
+        console.error("get-user-claims-mobile", err.error.errorMsg)
       });
   }
 }
