@@ -4,7 +4,7 @@
       <div class="input-group">
         <input type="search" class="form-control" placeholder="Search..." [(ngModel)]="search" name="search">
         <div class="input-group-append">
-          <button class="btn-search" type="button" (click)="searchProvider()">Search</button>
+          <button class="btn btn-primary" type="button" (click)="searchProvider()">Search</button>
         </div>
       </div>
     </form>
@@ -12,7 +12,7 @@
       data-bs-toggle="modal" data-bs-target="#share_org">Share</button>
   </div>
   <div *ngFor="let pl of orgainzationList" class="list-group list-group-flush border-bottom scrollarea">
-    <a class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+    <a class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true" [tabindex]="pl.provider_id" role="link">
 
       <div class="d-flex justify-content-between">
         <div class="form-check">
