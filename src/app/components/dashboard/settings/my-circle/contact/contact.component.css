@@ -123,3 +123,11 @@ input.ng-invalid.ng-touched {
   border-bottom: 1px solid #ccc;
   text-align: left;
 }
+
+.btn-outline-danger {
+  color: #d42d3d;
+}
+
+.btn-outline-primary {
+  color: #0667f6;
+}
