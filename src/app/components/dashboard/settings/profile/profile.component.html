@@ -2,10 +2,14 @@
   <div class="row">
     <div class="col-md-12">
       <div class="d-flex flex-column align-items-center text-center">
-        <img class="avatar shadow mt-5" [src]="avatar">
-        <span class="mt-3 fs-3 fw-bold">Welcome, {{userData.fname | titlecase}}.</span>
+        <img class="avatar shadow mt-5" [src]="avatar" alt="avatar">
+        <h1>
+          <span class="mt-3 fs-3 fw-bold">Welcome, {{userData.fname | titlecase}}.</span>
+        </h1>
         <span class="fs-5 mt-3">Personal Information</span>
-        <p class="fs-5 fw-bold label-name m-0">{{userData.fname}} {{userData.lname}}</p>
+        <h1>
+          <p class="fs-5 fw-bold label-name m-0">{{userData.fname}} {{userData.lname}}</p>
+        </h1>
         <p class="fs-6 m-0">{{userData.dob | date:'dd MMM yyyy'}}</p>
         <p class="fs-6 m-0">Age ({{shareDataService.getAge()}})</p>
         <div class="user-info">
