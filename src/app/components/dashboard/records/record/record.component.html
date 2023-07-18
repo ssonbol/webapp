@@ -11,7 +11,7 @@
   </div>
 </section>
 <ul class="list-group mb-5">
-  <a (click)="navigate(item)" class="text-decoration-none" *ngFor="let item of records">
+  <a (click)="navigate(item)" class="text-decoration-none" *ngFor="let item of records" [id]="item" [tabindex]="item.count" role="link">
     <li class="list-group-item">
       <div class="row">
         <div class="col-md-10">
